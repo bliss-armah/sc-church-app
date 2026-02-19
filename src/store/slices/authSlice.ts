@@ -6,7 +6,7 @@ export interface User {
   email: string;
   username: string;
   fullName: string;
-  role: "admin" | "user";
+  role: "super_admin" | "calling_team" | "texting_team";
   isActive: boolean;
   mustChangePassword: boolean;
   createdAt: string;

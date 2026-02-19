@@ -33,7 +33,7 @@ const adminNavigation = [
 export function Sidebar() {
   const location = useLocation();
   const { user } = useSelector((state: RootState) => state.auth);
-  const isAdmin = user?.role === "admin";
+  const isSuperAdmin = user?.role === "super_admin";
 
   return (
     <div className="w-64 bg-background border-r">
@@ -58,7 +58,7 @@ export function Sidebar() {
             );
           })}
 
-          {isAdmin && (
+          {isSuperAdmin && (
             <>
               <div className="pt-4 pb-2">
                 <h3 className="px-3 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
