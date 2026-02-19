@@ -96,16 +96,15 @@ export default function MembersPage() {
                 >
                   <div className="flex-1">
                     <h3 className="font-medium">
-                      {member.first_name} {member.second_name}{" "}
-                      {member.last_name}
+                      {member.firstName} {member.secondName} {member.lastName}
                     </h3>
                     <div className="text-sm text-muted-foreground space-y-1">
                       <p>Email: {member.email || "N/A"}</p>
-                      <p>Phone: {member.phone_number || "N/A"}</p>
-                      <p>Status: {member.membership_status}</p>
+                      <p>Phone: {member.phoneNumber || "N/A"}</p>
+                      <p>Status: {member.membershipStatus}</p>
                       <p>
                         Joined:{" "}
-                        {new Date(member.date_joined).toLocaleDateString()}
+                        {new Date(member.dateJoined).toLocaleDateString()}
                       </p>
                     </div>
                   </div>

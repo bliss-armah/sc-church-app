@@ -20,17 +20,17 @@ export default function CreateMemberPage() {
   const [isLoading, setIsLoading] = useState(false);
 
   const [formData, setFormData] = useState({
-    first_name: "",
-    second_name: "",
-    other_names: "",
-    last_name: "",
-    date_of_birth: "",
+    firstName: "",
+    secondName: "",
+    otherNames: "",
+    lastName: "",
+    dateOfBirth: "",
     gender: "male" as "male" | "female" | "other",
-    phone_number: "",
+    phoneNumber: "",
     email: "",
     address: "",
-    membership_status: "active" as "active" | "inactive" | "visitor",
-    date_joined: new Date().toISOString().split("T")[0],
+    membershipStatus: "active" as "active" | "inactive" | "visitor",
+    dateJoined: new Date().toISOString().split("T")[0],
     notes: "",
   });
 
@@ -75,50 +75,50 @@ export default function CreateMemberPage() {
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
-                <Label htmlFor="first_name">First Name *</Label>
+                <Label htmlFor="firstName">First Name *</Label>
                 <Input
-                  id="first_name"
-                  name="first_name"
-                  value={formData.first_name}
+                  id="firstName"
+                  name="firstName"
+                  value={formData.firstName}
                   onChange={handleChange}
                   required
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="last_name">Last Name *</Label>
+                <Label htmlFor="lastName">Last Name *</Label>
                 <Input
-                  id="last_name"
-                  name="last_name"
-                  value={formData.last_name}
+                  id="lastName"
+                  name="lastName"
+                  value={formData.lastName}
                   onChange={handleChange}
                   required
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="second_name">Second Name</Label>
+                <Label htmlFor="secondName">Second Name</Label>
                 <Input
-                  id="second_name"
-                  name="second_name"
-                  value={formData.second_name}
+                  id="secondName"
+                  name="secondName"
+                  value={formData.secondName}
                   onChange={handleChange}
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="other_names">Other Names</Label>
+                <Label htmlFor="otherNames">Other Names</Label>
                 <Input
-                  id="other_names"
-                  name="other_names"
-                  value={formData.other_names}
+                  id="otherNames"
+                  name="otherNames"
+                  value={formData.otherNames}
                   onChange={handleChange}
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="date_of_birth">Date of Birth *</Label>
+                <Label htmlFor="dateOfBirth">Date of Birth *</Label>
                 <Input
-                  id="date_of_birth"
-                  name="date_of_birth"
+                  id="dateOfBirth"
+                  name="dateOfBirth"
                   type="date"
-                  value={formData.date_of_birth}
+                  value={formData.dateOfBirth}
                   onChange={handleChange}
                   required
                 />
@@ -139,11 +139,11 @@ export default function CreateMemberPage() {
                 </select>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="phone_number">Phone Number</Label>
+                <Label htmlFor="phoneNumber">Phone Number</Label>
                 <Input
-                  id="phone_number"
-                  name="phone_number"
-                  value={formData.phone_number}
+                  id="phoneNumber"
+                  name="phoneNumber"
+                  value={formData.phoneNumber}
                   onChange={handleChange}
                 />
               </div>
@@ -158,11 +158,11 @@ export default function CreateMemberPage() {
                 />
               </div>
               <div className="space-y-2">
-                <Label htmlFor="membership_status">Membership Status</Label>
+                <Label htmlFor="membershipStatus">Membership Status</Label>
                 <select
-                  id="membership_status"
-                  name="membership_status"
-                  value={formData.membership_status}
+                  id="membershipStatus"
+                  name="membershipStatus"
+                  value={formData.membershipStatus}
                   onChange={handleChange}
                   className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background"
                 >
@@ -172,12 +172,12 @@ export default function CreateMemberPage() {
                 </select>
               </div>
               <div className="space-y-2">
-                <Label htmlFor="date_joined">Date Joined</Label>
+                <Label htmlFor="dateJoined">Date Joined</Label>
                 <Input
-                  id="date_joined"
-                  name="date_joined"
+                  id="dateJoined"
+                  name="dateJoined"
                   type="date"
-                  value={formData.date_joined}
+                  value={formData.dateJoined}
                   onChange={handleChange}
                 />
               </div>

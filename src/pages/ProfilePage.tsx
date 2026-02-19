@@ -46,7 +46,7 @@ export default function ProfilePage() {
               <label className="text-sm font-medium text-muted-foreground">
                 Full Name
               </label>
-              <p className="text-sm">{user.full_name}</p>
+              <p className="text-sm">{user.fullName}</p>
             </div>
             <div>
               <label className="text-sm font-medium text-muted-foreground">
@@ -58,17 +58,15 @@ export default function ProfilePage() {
               <label className="text-sm font-medium text-muted-foreground">
                 Status
               </label>
-              <p className="text-sm">
-                {user.is_active ? "Active" : "Inactive"}
-              </p>
+              <p className="text-sm">{user.isActive ? "Active" : "Inactive"}</p>
             </div>
             <div>
               <label className="text-sm font-medium text-muted-foreground">
                 Last Login
               </label>
               <p className="text-sm">
-                {user.last_login
-                  ? new Date(user.last_login).toLocaleString()
+                {user.lastLogin
+                  ? new Date(user.lastLogin).toLocaleString()
                   : "Never"}
               </p>
             </div>
@@ -81,7 +79,7 @@ export default function ProfilePage() {
             <CardDescription>Change your account password</CardDescription>
           </CardHeader>
           <CardContent>
-            {user.must_change_password && (
+            {user.mustChangePassword && (
               <div className="mb-4 p-3 bg-yellow-50 border border-yellow-200 rounded-md">
                 <p className="text-sm text-yellow-800">
                   You must change your password before continuing.

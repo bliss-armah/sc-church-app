@@ -40,7 +40,7 @@ export default function MemberDetailPage() {
           </Link>
           <div>
             <h1 className="text-3xl font-bold">
-              {currentMember.first_name} {currentMember.last_name}
+              {currentMember.firstName} {currentMember.lastName}
             </h1>
             <p className="text-muted-foreground">Member Details</p>
           </div>
@@ -64,8 +64,8 @@ export default function MemberDetailPage() {
                 Full Name
               </label>
               <p className="text-sm">
-                {currentMember.first_name} {currentMember.second_name}{" "}
-                {currentMember.other_names} {currentMember.last_name}
+                {currentMember.firstName} {currentMember.secondName}{" "}
+                {currentMember.otherNames} {currentMember.lastName}
               </p>
             </div>
             <div>
@@ -73,7 +73,7 @@ export default function MemberDetailPage() {
                 Date of Birth
               </label>
               <p className="text-sm">
-                {new Date(currentMember.date_of_birth).toLocaleDateString()}
+                {new Date(currentMember.dateOfBirth).toLocaleDateString()}
               </p>
             </div>
             <div>
@@ -100,7 +100,7 @@ export default function MemberDetailPage() {
               <label className="text-sm font-medium text-muted-foreground">
                 Phone Number
               </label>
-              <p className="text-sm">{currentMember.phone_number || "N/A"}</p>
+              <p className="text-sm">{currentMember.phoneNumber || "N/A"}</p>
             </div>
             <div>
               <label className="text-sm font-medium text-muted-foreground">
@@ -121,7 +121,7 @@ export default function MemberDetailPage() {
                 Status
               </label>
               <p className="text-sm capitalize">
-                {currentMember.membership_status}
+                {currentMember.membershipStatus}
               </p>
             </div>
             <div>
@@ -129,7 +129,7 @@ export default function MemberDetailPage() {
                 Date Joined
               </label>
               <p className="text-sm">
-                {new Date(currentMember.date_joined).toLocaleDateString()}
+                {new Date(currentMember.dateJoined).toLocaleDateString()}
               </p>
             </div>
           </CardContent>

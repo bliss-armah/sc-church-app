@@ -5,13 +5,13 @@ export interface User {
   id: string;
   email: string;
   username: string;
-  full_name: string;
+  fullName: string;
   role: "admin" | "user";
-  is_active: boolean;
-  must_change_password: boolean;
-  created_at: string;
-  updated_at: string;
-  last_login?: string;
+  isActive: boolean;
+  mustChangePassword: boolean;
+  createdAt: string;
+  updatedAt: string;
+  lastLogin?: string;
 }
 
 interface AuthState {
@@ -24,10 +24,10 @@ interface AuthState {
 
 const initialState: AuthState = {
   user: JSON.parse(localStorage.getItem("user") || "null"),
-  token: localStorage.getItem("access_token"),
+  token: localStorage.getItem("accessToken"),
   isLoading: false,
   error: null,
-  isAuthenticated: !!localStorage.getItem("access_token"),
+  isAuthenticated: !!localStorage.getItem("accessToken"),
 };
 
 // Async thunks
@@ -61,7 +61,7 @@ export const getCurrentUser = createAsyncThunk(
 
 export const changePassword = createAsyncThunk(
   "auth/changePassword",
-  async (passwordData: { current_password: string; new_password: string }) => {
+  async (passwordData: { currentPassword: string; newPassword: string }) => {
     const response = await api.post("/auth/change-password", passwordData);
     return response.data;
   },
@@ -76,7 +76,7 @@ const authSlice = createSlice({
       state.token = null;
       state.isAuthenticated = false;
       state.error = null;
-      localStorage.removeItem("access_token");
+      localStorage.removeItem("accessToken");
       localStorage.removeItem("user");
     },
     clearError: (state) => {
@@ -93,9 +93,9 @@ const authSlice = createSlice({
       .addCase(login.fulfilled, (state, action) => {
         state.isLoading = false;
         state.user = action.payload.user;
-        state.token = action.payload.access_token;
+        state.token = action.payload.accessToken;
         state.isAuthenticated = true;
-        localStorage.setItem("access_token", action.payload.access_token);
+        localStorage.setItem("accessToken", action.payload.accessToken);
         localStorage.setItem("user", JSON.stringify(action.payload.user));
       })
       .addCase(login.rejected, (state, action) => {

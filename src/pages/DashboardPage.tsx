@@ -21,13 +21,13 @@ export default function DashboardPage() {
   }, [dispatch]);
 
   const activeMembers = members.filter(
-    (m) => m.membership_status === "active",
+    (m) => m.membershipStatus === "active",
   ).length;
   const inactiveMembers = members.filter(
-    (m) => m.membership_status === "inactive",
+    (m) => m.membershipStatus === "inactive",
   ).length;
   const visitors = members.filter(
-    (m) => m.membership_status === "visitor",
+    (m) => m.membershipStatus === "visitor",
   ).length;
 
   const stats = [
@@ -62,7 +62,7 @@ export default function DashboardPage() {
       <div>
         <h1 className="text-3xl font-bold">Dashboard</h1>
         <p className="text-muted-foreground">
-          Welcome back, {user?.full_name || user?.username}!
+          Welcome back, {user?.fullName || user?.username}!
         </p>
       </div>
 
@@ -100,10 +100,10 @@ export default function DashboardPage() {
                   <div className="w-2 h-2 bg-primary rounded-full" />
                   <div className="flex-1 space-y-1">
                     <p className="text-sm font-medium">
-                      {member.first_name} {member.last_name}
+                      {member.firstName} {member.lastName}
                     </p>
                     <p className="text-xs text-muted-foreground">
-                      Joined {new Date(member.date_joined).toLocaleDateString()}
+                      Joined {new Date(member.dateJoined).toLocaleDateString()}
                     </p>
                   </div>
                 </div>

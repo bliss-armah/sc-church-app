@@ -3,20 +3,20 @@ import api from "@/lib/api";
 
 export interface Member {
   id: string;
-  first_name: string;
-  second_name?: string;
-  other_names?: string;
-  last_name: string;
-  date_of_birth: string;
+  firstName: string;
+  secondName?: string;
+  otherNames?: string;
+  lastName: string;
+  dateOfBirth: string;
   gender: "male" | "female" | "other";
-  phone_number?: string;
+  phoneNumber?: string;
   email?: string;
   address?: string;
-  membership_status: "active" | "inactive" | "visitor";
-  date_joined: string;
+  membershipStatus: "active" | "inactive" | "visitor";
+  dateJoined: string;
   notes?: string;
-  created_at: string;
-  updated_at: string;
+  createdAt: string;
+  updatedAt: string;
 }
 
 interface MembersState {
@@ -74,7 +74,7 @@ export const fetchMemberById = createAsyncThunk(
 
 export const createMember = createAsyncThunk(
   "members/createMember",
-  async (memberData: Omit<Member, "id" | "created_at" | "updated_at">) => {
+  async (memberData: Omit<Member, "id" | "createdAt" | "updatedAt">) => {
     const response = await api.post("/members", memberData);
     return response.data;
   },
@@ -122,9 +122,9 @@ const membersSlice = createSlice({
         state.members = action.payload.items;
         state.pagination = {
           page: action.payload.page,
-          size: action.payload.size,
+          size: action.payload.pageSize,
           total: action.payload.total,
-          pages: action.payload.pages,
+          pages: action.payload.totalPages,
         };
       })
       .addCase(fetchMembers.rejected, (state, action) => {
