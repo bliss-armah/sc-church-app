@@ -85,8 +85,30 @@ function CreateUserModal({ onClose }: { onClose: () => void }) {
     (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
       setForm((f) => ({ ...f, [k]: e.target.value }));
 
+  const [localError, setLocalError] = useState<string | null>(null);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLocalError(null);
+
+    if (form.fullName.length < 4) {
+      setLocalError("Full name must be at least 4 letters.");
+      return;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(form.email)) {
+      setLocalError("Please enter a valid email address.");
+      return;
+    }
+    if (/\s/.test(form.username)) {
+      setLocalError("Username cannot contain spaces.");
+      return;
+    }
+    if (form.password.length < 8 || !/[A-Z]/.test(form.password)) {
+      setLocalError("Password must be at least 8 characters and contain an uppercase letter.");
+      return;
+    }
+
     const result = await dispatch(createUser(form));
     if (!result.type.endsWith("/rejected")) onClose();
   };
@@ -94,9 +116,9 @@ function CreateUserModal({ onClose }: { onClose: () => void }) {
   return (
     <Modal title="Add New User" onClose={onClose}>
       <form onSubmit={handleSubmit} className="space-y-4">
-        {error && (
+        {(localError || error) && (
           <div className="p-3 text-sm text-red-700 bg-red-50 border border-red-200 rounded-md">
-            {error}
+            {localError || error}
           </div>
         )}
         <div className="grid grid-cols-2 gap-4">
@@ -196,8 +218,18 @@ function EditUserModal({
     (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
       setForm((f) => ({ ...f, [k]: e.target.value }));
 
+  const [localError, setLocalError] = useState<string | null>(null);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setLocalError(null);
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (form.email && !emailRegex.test(form.email)) {
+      setLocalError("Please enter a valid email address.");
+      return;
+    }
+
     const result = await dispatch(updateUser({ id: user.id, data: form }));
     if (!result.type.endsWith("/rejected")) onClose();
   };
@@ -205,9 +237,9 @@ function EditUserModal({
   return (
     <Modal title={`Edit — ${user.fullName}`} onClose={onClose}>
       <form onSubmit={handleSubmit} className="space-y-4">
-        {error && (
+        {(localError || error) && (
           <div className="p-3 text-sm text-red-700 bg-red-50 border border-red-200 rounded-md">
-            {error}
+            {localError || error}
           </div>
         )}
         <div className="space-y-1">

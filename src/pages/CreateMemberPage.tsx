@@ -18,6 +18,7 @@ export default function CreateMemberPage() {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -52,8 +53,11 @@ export default function CreateMemberPage() {
     try {
       await dispatch(createMember(formData)).unwrap();
       navigate("/members");
-    } catch (error) {
+    } catch (error: any) {
       console.error("Failed to create member:", error);
+      setErrorMessage(
+        error?.message || "Failed to create member. The email or phone number might already exist."
+      );
     } finally {
       setIsLoading(false);
     }
@@ -204,6 +208,12 @@ export default function CreateMemberPage() {
                 placeholder="Additional notes about the member..."
               />
             </div>
+
+            {errorMessage && (
+              <div className="p-3 text-sm text-destructive bg-destructive/10 rounded-md">
+                {errorMessage}
+              </div>
+            )}
 
             <div className="flex space-x-4">
               <Button type="submit" disabled={isLoading}>
