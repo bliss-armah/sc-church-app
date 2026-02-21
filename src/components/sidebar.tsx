@@ -1,6 +1,6 @@
 import { Link, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { LayoutDashboard, Users, UserPlus, Settings } from "lucide-react";
+import { LayoutDashboard, Users, UserPlus, Settings, CalendarCheck } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { RootState } from "@/store/store";
 
@@ -19,6 +19,11 @@ const navigation = [
     name: "Add Member",
     href: "/members/new",
     icon: UserPlus,
+  },
+  {
+    name: "Attendance",
+    href: "/attendance",
+    icon: CalendarCheck,
   },
 ];
 

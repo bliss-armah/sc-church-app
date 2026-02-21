@@ -15,6 +15,7 @@ export interface Member {
   membershipStatus: "active" | "inactive" | "visitor";
   dateJoined: string;
   notes?: string;
+  isDeleted: boolean;
   createdAt: string;
   updatedAt: string;
 }
@@ -74,8 +75,8 @@ export const fetchMemberById = createAsyncThunk(
 
 export const createMember = createAsyncThunk(
   "members/createMember",
-  async (memberData: Omit<Member, "id" | "createdAt" | "updatedAt">) => {
-    const response = await api.post("/members", memberData);
+  async (memberData: Omit<Member, "id" | "isDeleted" | "createdAt" | "updatedAt">) => {
+    const response = await api.post("/members/", memberData);
     return response.data;
   },
 );

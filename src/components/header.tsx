@@ -44,7 +44,7 @@ export function Header() {
 
           <div className="flex items-center space-x-2">
             <span className="text-sm text-muted-foreground">
-              {user?.full_name || user?.username}
+              {user?.fullName || user?.username}
             </span>
             <Button variant="ghost" size="icon" onClick={handleLogout}>
               <LogOut className="h-[1.2rem] w-[1.2rem]" />

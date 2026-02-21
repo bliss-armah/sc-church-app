@@ -17,6 +17,9 @@ import CreateMemberPage from "@/pages/CreateMemberPage";
 import EditMemberPage from "@/pages/EditMemberPage";
 import UsersPage from "@/pages/UsersPage";
 import ProfilePage from "@/pages/ProfilePage";
+import CheckInPage from "@/pages/CheckInPage";
+import RegisterPage from "@/pages/RegisterPage";
+import AttendancePage from "@/pages/AttendancePage";
 
 function App() {
   return (
@@ -25,6 +28,8 @@ function App() {
         <Router>
           <Routes>
             <Route path="/login" element={<LoginPage />} />
+            <Route path="/checkin" element={<CheckInPage />} />
+            <Route path="/register" element={<RegisterPage />} />
             <Route
               path="/"
               element={
@@ -41,6 +46,7 @@ function App() {
               <Route path="members/:id/edit" element={<EditMemberPage />} />
               <Route path="users" element={<UsersPage />} />
               <Route path="profile" element={<ProfilePage />} />
+              <Route path="attendance" element={<AttendancePage />} />
             </Route>
           </Routes>
         </Router>

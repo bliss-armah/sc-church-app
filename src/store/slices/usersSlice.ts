@@ -65,6 +65,16 @@ const initialState: UsersState = {
   pagination: { page: 1, pageSize: 20, total: 0, totalPages: 0 },
 };
 
+// ─── Helpers ──────────────────────────────────────────────────────────────────
+
+const getErrorMessage = (e: any, fallback: string) => {
+  const detail = e.response?.data?.detail;
+  if (typeof detail === "string") return detail;
+  if (Array.isArray(detail)) return detail.map((d: any) => d.msg || JSON.stringify(d)).join(", ");
+  if (detail) return JSON.stringify(detail);
+  return fallback;
+};
+
 // ─── Async Thunks ────────────────────────────────────────────────────────────
 
 export const fetchUsers = createAsyncThunk(
@@ -83,9 +93,7 @@ export const fetchUsers = createAsyncThunk(
       const response = await api.get(`/users?${q}`);
       return response.data;
     } catch (e: any) {
-      return rejectWithValue(
-        e.response?.data?.detail || "Failed to fetch users",
-      );
+      return rejectWithValue(getErrorMessage(e, "Failed to fetch users"));
     }
   },
 );
@@ -97,9 +105,7 @@ export const createUser = createAsyncThunk(
       const response = await api.post("/users/", data);
       return response.data;
     } catch (e: any) {
-      return rejectWithValue(
-        e.response?.data?.detail || "Failed to create user",
-      );
+      return rejectWithValue(getErrorMessage(e, "Failed to create user"));
     }
   },
 );
@@ -114,9 +120,7 @@ export const updateUser = createAsyncThunk(
       const response = await api.put(`/users/${id}`, data);
       return response.data;
     } catch (e: any) {
-      return rejectWithValue(
-        e.response?.data?.detail || "Failed to update user",
-      );
+      return rejectWithValue(getErrorMessage(e, "Failed to update user"));
     }
   },
 );
@@ -128,9 +132,7 @@ export const deleteUser = createAsyncThunk(
       await api.delete(`/users/${id}`);
       return id;
     } catch (e: any) {
-      return rejectWithValue(
-        e.response?.data?.detail || "Failed to delete user",
-      );
+      return rejectWithValue(getErrorMessage(e, "Failed to delete user"));
     }
   },
 );
@@ -147,9 +149,7 @@ export const resetUserPassword = createAsyncThunk(
       });
       return response.data;
     } catch (e: any) {
-      return rejectWithValue(
-        e.response?.data?.detail || "Failed to reset password",
-      );
+      return rejectWithValue(getErrorMessage(e, "Failed to reset password"));
     }
   },
 );

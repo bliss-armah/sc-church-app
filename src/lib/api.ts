@@ -27,10 +27,15 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    // Only redirect on 401 if we're not on the login page and not trying to login
+    const pathname = window.location.pathname;
+    const isPublicPage = pathname.includes("/login") || 
+                         pathname.includes("/checkin") || 
+                         pathname.includes("/register");
+                         
+    // Only redirect on 401 if we're not on a public page and not trying to login
     if (
       error.response?.status === 401 &&
-      !window.location.pathname.includes("/login") &&
+      !isPublicPage &&
       !error.config?.url?.includes("/auth/login")
     ) {
       localStorage.removeItem("accessToken");
